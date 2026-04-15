@@ -16,7 +16,7 @@
 ## 3. MITRE ATT&CK Mapping
 | Tactic | Technique ID | Technique Name | Behavior |
 | :--- | :--- | :--- | :--- |
-| Initial Access | T1566.004 | Vishing | [cite_start]Calling help desk pretending to be employees[cite: 21]. |
-| Credential Access | T1539 | Steal Web Session Cookie | [cite_start]Theft of session tokens to bypass MFA[cite: 21]. |
-| Persistence | T1098.005 | Device Registration | [cite_start]Registering unauthorized MFA devices[cite: 21]. |
-| Exfiltration | T1567.002 | Exfiltration to Cloud | [cite_start]Using Rclone to transfer stolen data[cite: 21]. |
+| Initial Access | T1566.004 | Vishing | Calling help desk pretending to be employees. |
+| Credential Access | T1539 | Steal Web Session Cookie | Theft of session tokens to bypass MFA. |
+| Persistence | T1098.005 | Device Registration | Registering unauthorized MFA devices. |
+| Exfiltration | T1567.002 | Exfiltration to Cloud | Using Rclone to transfer stolen data. |
