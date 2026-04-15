@@ -1,8 +1,8 @@
 # Lab 1: Cyber Threat Intelligence Report Mapping
 
-[cite_start]**Group Members:** Amit Mitzmacher, Tal Mitzmacher
-[cite_start]**Course:** Cyber Threat Intelligence
-[cite_start]**Date:** February 26, 2026
+[cite_start]**Group Members:** Amit Mitzmacher, Tal Mitzmacher  
+[cite_start]**Course:** Cyber Threat Intelligence  
+[cite_start]**Date:** February 26, 2026  
 
 ## 1. Source CTI Report
 * [cite_start]**Report Title:** Muddled Libra: Evolution to Cloud and SaaS Attacks [cite: 6]
