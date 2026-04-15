@@ -16,12 +16,12 @@
 This report analyzes the activities of the threat group "Muddled Libra" (also known as Scattered Spider). The group is known for its sophisticated social engineering and its shift from attacking on-premise infrastructure to targeting Cloud and SaaS environments. Their primary strategy is "logging in rather than breaking in," utilizing stolen session tokens and bypassing Multi-Factor Authentication (MFA) to gain high-level administrative access.
 
 ### Attack Schema
-* [cite_start]**Reconnaissance:** Identifying IT help desk employees via social media and LinkedIn. [cite: 14]
-* [cite_start]**Initial Access:** Using Voice Phishing (Vishing) to trick help desk staff into resetting passwords or enrolling new MFA devices. [cite: 15]
-* [cite_start]**Credential Access:** Stealing web session cookies to bypass MFA prompts. [cite: 16]
-* [cite_start]**Persistence:** Registering unauthorized devices in the corporate identity provider (Okta/Azure AD). [cite: 17]
-* [cite_start]**Lateral Movement:** Moving from the compromised identity provider into SaaS apps (Slack, AWS, GCP). [cite: 18]
-* [cite_start]**Exfiltration:** Using automated tools like Rclone to move data to attacker-controlled cloud storage. [cite: 19]
+* **Reconnaissance:** Identifying IT help desk employees via social media and LinkedIn. [cite: 14]
+* **Initial Access:** Using Voice Phishing (Vishing) to trick help desk staff into resetting passwords or enrolling new MFA devices. [cite: 15]
+* **Credential Access:** Stealing web session cookies to bypass MFA prompts. [cite: 16]
+* **Persistence:** Registering unauthorized devices in the corporate identity provider (Okta/Azure AD). [cite: 17]
+* **Lateral Movement:** Moving from the compromised identity provider into SaaS apps (Slack, AWS, GCP). [cite: 18]
+* **Exfiltration:** Using automated tools like Rclone to move data to attacker-controlled cloud storage. [cite: 19]
 
 ## 3. MITRE ATT&CK Mapping (Behaviors / Tactics / Techniques)
 
