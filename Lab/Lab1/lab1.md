@@ -13,7 +13,7 @@
 
 ## 2. Short Description & Attack Schema
 ### Description
-This report analyzes the activities of the threat group "Muddled Libra" (also known as Scattered Spider). The group is known for its sophisticated social engineering and its shift from attacking on-premise infrastructure to targeting Cloud and SaaS environments.  Their primary strategy is "logging in rather than breaking in," utilizing stolen session tokens and bypassing Multi-Factor Authentication (MFA) to gain high-level administrative access.
+This report analyzes the activities of the threat group "Muddled Libra" (also known as Scattered Spider). The group is known for its sophisticated social engineering and its shift from attacking on-premise infrastructure to targeting Cloud and SaaS environments. Their primary strategy is "logging in rather than breaking in," utilizing stolen session tokens and bypassing Multi-Factor Authentication (MFA) to gain high-level administrative access.
 
 ### Attack Schema
 **Reconnaissance:** Identifying IT help desk employees via social media and LinkedIn.
