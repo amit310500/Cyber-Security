@@ -7,11 +7,11 @@
 ## 1. Source CTI Report
 **Report Title:** Muddled Libra: Evolution to Cloud and SaaS Attacks   
 **Organization:** Palo Alto Networks (Unit 42)   
-**Link:** (https://unit42.paloaltonetworks.com/muddled-libra-evolution-to-cloud/)   
+**Link:** https://unit42.paloaltonetworks.com/muddled-libra-evolution-to-cloud/ 
 
 ## 2. Description & Attack Schema
-**Description:** This report analyzes "Muddled Libra" (Scattered Spider), focusing on their shift to Cloud and SaaS attacks using social engineering and session token theft[cite: 10, 11, 12].
-* [cite_start]**Attack Schema:** Includes Reconnaissance via social media, Vishing for initial access, and the use of Rclone for exfiltration[cite: 14, 15, 19].
+**Description:** This report analyzes "Muddled Libra" (Scattered Spider), focusing on their shift to Cloud and SaaS attacks using social engineering and session token theft.  
+**Attack Schema:** Includes Reconnaissance via social media, Vishing for initial access, and the use of Rclone for exfiltration.  
 
 ## 3. MITRE ATT&CK Mapping
 | Tactic | Technique ID | Technique Name | Behavior |
