@@ -22,7 +22,7 @@ This report analyzes the activities of the threat group "Muddled Libra" (also kn
 * **Persistence:** Registering unauthorized devices in the corporate identity provider (Okta/Azure AD). 
 * **Lateral Movement:** Moving from the compromised identity provider into SaaS apps (Slack, AWS, GCP). 
 * **Exfiltration:** Using automated tools like Rclone to move data to attacker-controlled cloud storage.
-  <img width="1000" height="100" alt="image" src="https://github.com/user-attachments/assets/283f1569-9b2d-418f-b958-a945431082ef" />
+  <img width="1000" height="300" alt="image" src="https://github.com/user-attachments/assets/283f1569-9b2d-418f-b958-a945431082ef" />
 
 
 
