@@ -21,7 +21,21 @@ This report analyzes the activities of the threat group "Muddled Libra" (also kn
 * **Credential Access:** Stealing web session cookies to bypass MFA prompts. 
 * **Persistence:** Registering unauthorized devices in the corporate identity provider (Okta/Azure AD). 
 * **Lateral Movement:** Moving from the compromised identity provider into SaaS apps (Slack, AWS, GCP). 
-* **Exfiltration:** Using automated tools like Rclone to move data to attacker-controlled cloud storage. 
+* **Exfiltration:** Using automated tools like Rclone to move data to attacker-controlled cloud storage.
+
+  [ Reconnaissance ] 
+      |
+      V
+[ Initial Access ]  --> (Vishing Help Desk)
+      |
+      V
+[ Persistence ]     --> (Register Unauthorized MFA Device)
+      |
+      V
+[ Lateral Movement ] --> (Moving from Okta to Cloud/SaaS)
+      |
+      V
+[ Exfiltration ]    --> (Rclone to Attacker Storage)
 
 ## 3. MITRE ATT&CK Mapping (Behaviors / Tactics / Techniques)
 
