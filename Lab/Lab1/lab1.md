@@ -37,6 +37,6 @@ This report analyzes the activities of the threat group "Muddled Libra" (also kn
 | Exfiltration | T1567.002 | Exfiltration Over Web Service | Using the Rclone utility to transfer stolen data to the attacker's cloud infrastructure. |
 
 ## [cite_start]4. Advanced Search Queries [cite: 22]
-* [cite_start]`site: unit42.paloaltonetworks.com "Muddled Libra" "MITRE ATT&CK"` [cite: 24]
-* [cite_start]`tasklist /v site: attack.mitre.org/techniques/T1539` [cite: 25]
-* [cite_start]`"MFA Fatigue" site: cloud.google.com/blog/topics/threat-intelligence` [cite: 26]
+* `site: unit42.paloaltonetworks.com "Muddled Libra" "MITRE ATT&CK"` 
+* `tasklist /v site: attack.mitre.org/techniques/T1539` 
+* `"MFA Fatigue" site: cloud.google.com/blog/topics/threat-intelligence` 
