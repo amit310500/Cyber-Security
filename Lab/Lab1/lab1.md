@@ -23,7 +23,7 @@ This report analyzes the activities of the threat group "Muddled Libra" (also kn
 * **Lateral Movement:** Moving from the compromised identity provider into SaaS apps (Slack, AWS, GCP). 
 * **Exfiltration:** Using automated tools like Rclone to move data to attacker-controlled cloud storage.
   
-  <img width="1000" height="100" alt="image" src="https://github.com/user-attachments/assets/0d338f08-7075-41c1-b1f4-125c7897eecf" />
+  <img width="1000" height="150" alt="image" src="https://github.com/user-attachments/assets/0d338f08-7075-41c1-b1f4-125c7897eecf" />
 
 
 
