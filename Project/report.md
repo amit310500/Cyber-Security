@@ -1,7 +1,10 @@
 # Project Report: AI Cyber Shield MVP System
-**Course:** Artificial Intelligence in Cybersecurity 
-**Submitted by:** Amit Mitzmacher, Tal Mitzmacher 
-**Institution:** Holon Institute of Technology (HIT) 
+**Course:** Artificial Intelligence in Cybersecurity
+
+**Submitted by:** Amit Mitzmacher, Tal Mitzmacher
+
+**Institution:** Holon Institute of Technology (HIT)
+
 
 ### 1. Introduction and Objectives
 This project focuses on building an MVP (Minimum Viable Product) system to detect phishing attacks using Machine Learning. Traditional security tools usually look for specific malicious links or known bad senders (signature-based detection). However, modern hackers use "semantic camouflage"—meaning they hide their bad intentions inside polite, professional corporate emails. 
