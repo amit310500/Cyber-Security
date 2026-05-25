@@ -1,4 +1,4 @@
-# Project Report: AI-Driven Phishing Email Detection System
+# Project Report: Phishing Email Detection System
 
 **Course:** Artificial Intelligence in Cybersecurity  
 **Submitted by:** Amit Mitzmacher, Tal Mitzmacher  
