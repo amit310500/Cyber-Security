@@ -1,70 +1,88 @@
 # Project Report: AI Cyber Shield MVP System
-**Course:** Artificial Intelligence in Cybersecurity
 
-**Submitted by:** Amit Mitzmacher, Tal Mitzmacher
+**Course:** Artificial Intelligence in Cybersecurity  
+**Submitted by:** Amit Mitzmacher, Tal Mitzmacher  
+**Institution:** Holon Institute of Technology (HIT)  
 
-**Institution:** Holon Institute of Technology (HIT)
+---
 
+## 1. Introduction and Objectives
+In this project, we built an MVP (Minimum Viable Product) system designed to detect phishing attacks using Machine Learning. Traditional security mechanisms usually rely on signature-based detection, meaning they look for specific blacklisted links or known malicious senders. However, modern cybercriminals frequently use "semantic camouflage" to bypass these filters, wrapping their malicious intent inside polite, professional corporate emails.
 
-### 1. Introduction and Objectives
-This project focuses on building an MVP (Minimum Viable Product) system to detect phishing attacks using Machine Learning. Traditional security tools usually look for specific malicious links or known bad senders (signature-based detection). However, modern hackers use "semantic camouflage"—meaning they hide their bad intentions inside polite, professional corporate emails. 
+Our main objective was to train a Random Forest model combined with TF-IDF vectorization to scan incoming text traffic in real-time. Beyond basic binary classification (Safe/Phishing), our goal was to automatically map detected anomalies to the MITRE ATT&CK framework. This helps security analysts in a Security Operations Center (SOC) quickly understand the exact nature and strategy of the incoming threat.
 
-Our main goal was to train a Random Forest model combined with TF-IDF vectorization to scan text traffic, catch these hidden phishing attempts in real-time, and automatically map them to the MITRE ATT&CK framework so security teams can understand the nature of the threat immediately.
+---
 
-### 2. Dataset and Data Distribution
-For this project, we used a large dataset containing a total of 82,486 email samples. Before training, we analyzed the data distribution to make sure it was balanced, which is a critical step to prevent the model from being biased toward one specific class. 
+## 2. Dataset and Data Distribution
+We worked with a comprehensive dataset containing a total of 82,486 email samples. Before starting the training process, we analyzed the class distribution to ensure the dataset was balanced. This is a crucial step in machine learning pipelines because an imbalanced dataset can cause the model to develop a strong bias toward the majority class.
 
-The dataset is divided almost perfectly: about 50% are safe corporate emails and 50% are phishing emails. We split the data using an 80/20 ratio:
-* **Training set:** 65,988 samples (used to train the model)
-* **Testing set:** 16,498 samples (held out completely for the final evaluation)
+The dataset is divided almost perfectly, with roughly 50% safe corporate emails and 50% phishing messages. We split the data using a standard 80/20 ratio:
+* **Training Set:** 65,988 samples (used for training the model)
+* **Testing Set:** 16,498 samples (held out entirely and used only for final evaluation)
 
-### 3. Performance Evaluation
-We trained the Random Forest model using all available CPU cores (`n_jobs=-1`) to speed up the process. After testing the trained model on our 16,498 test samples, we got the following results.
+---
 
-#### A. Classification Report Metrics
-The model performed very well, reaching an overall accuracy of 99%. The detailed metrics for each class are presented below:
+## 3. Performance Evaluation
+We trained the Random Forest classifier using all available CPU cores (`n_jobs=-1`) to optimize computational efficiency. After running the model against our 16,498 independent test samples, we generated the following evaluation metrics.
 
-| Class | Precision | Recall | F1-Score | Support |
-| :--- | :---: | :---: | :---: | :---: |
-| **0 (Safe Traffic)** | 0.99 | 0.99 | 0.99 | 7,935 |
-| **1 (Phishing)** | 0.99 | 0.99 | 0.99 | 8,563 |
-| **Accuracy** | | | **0.99** | **16,498** |
+### A. Classification Report Metrics
+The model achieved an overall accuracy rate of 99%. Below is the breakdown of the precision, recall, and F1-score for each class:
 
-#### B. Confusion Matrix Analysis
-Looking at the confusion matrix, we can see exactly how many mistakes the model made out of the 16,498 test cases:
-* **True Negatives (TN):** 7,827 safe emails were correctly identified as safe.
-* **True Positives (TP):** 8,452 phishing emails were caught and blocked.
-* **False Positives (FP):** 108 safe emails were wrongly flagged as phishing (false alarms).
-* **False Negatives (FN):** 111 phishing emails slipped through the text filter.
+* **Class 0 (Safe Traffic):**
+  * Precision: 0.99
+  * Recall: 0.99
+  * F1-Score: 0.99
+  * Support: 7,935
 
-#### C. ROC Curve and AUC Value
-We also plotted the Receiver Operating Characteristic (ROC) curve to see how well our model separates the two classes at different thresholds. Our model achieved an Area Under the Curve (AUC) of 1.00 (rounded). This shows that the Random Forest classifier has a very strong ability to distinguish between legitimate corporate communication and phishing attempts.
+* **Class 1 (Phishing Threats):**
+  * Precision: 0.99
+  * Recall: 0.99
+  * F1-Score: 0.99
+  * Support: 8,563
 
-### 4. Feature Importance Insights
-One of the main benefits of using a Random Forest model is that it allows us to see which features (words) were the most important for its decisions. We extracted the top 10 most influential words from the model. 
+* **Overall Macro Accuracy:** 0.99 (Total Support: 16,498)
 
-We noticed that some words like "2008", "wrote", and "aug" have high statistical weight simply because of how the dataset was collected (historical email archives). However, looking past this dataset noise, the model heavily relies on words that indicate urgency, financial transactions, and credential verification (like "urgent", "invoice", and "password"). In our next project version, we plan to improve the text preprocessing step to strip out dates and metadata noise so the model can focus purely on cyber-related terms.
+### B. Confusion Matrix Analysis
+To understand the exact operational errors behind the 99% accuracy rate, we evaluated the raw confusion matrix results:
+* **True Negatives (TN):** 7,827 safe emails were correctly classified as legitimate.
+* **True Positives (TP):** 8,452 phishing attacks were successfully intercepted and blocked.
+* **False Positives (FP):** 108 benign messages were wrongly flagged as phishing (False Alarms).
+* **False Negatives (FN):** 111 malicious emails managed to slip through the text filter (Missed Threats).
 
-### 5. Live Simulation and MITRE ATT&CK Mapping
-To see how the MVP behaves in a live environment, we ran a simulation testing pipeline with 100 random email samples. In this live run, the system classified **63% of the traffic as safe** and flagged **37% as phishing anomalies**.
+### C. ROC Curve and AUC Value
+We also plotted the Receiver Operating Characteristic (ROC) curve to evaluate how well our model separates the two classes at different decision thresholds. Our model reached an Area Under the Curve (AUC) of 1.00 (rounded). This strong result proves that the features extracted by the TF-IDF vectorizer allow the Random Forest classifier to establish sharp decision boundaries between legitimate corporate communications and social engineering attempts.
 
-We specifically tested the system with the two main project test cases to see if it handles semantic camouflage:
+---
 
-* **Test Case A (Routine Workflow):**
-  * *Text:* "Meeting reminders: Please review the Q3 corporate reports before tomorrow's sync..."
-  * *Result:* The model correctly classified this as **SAFE** with a high confidence score of **95.00%**, meaning it won't disrupt normal corporate communications.
-* **Test Case B (Polite Attack Simulation):**
-  * *Text:* "Dear employee... please find attached the urgent project expense invoice... click the link to verify your password immediately..."
-  * *Result:* The system caught the attack and raised a **PHISHING ALERT** with a confidence score of **55.00%**.
+## 4. Feature Importance Insights
+One of the key reasons we chose a Random Forest architecture is its transparency. It allows us to inspect the `feature_importances_` attribute to see exactly which words had the most influence on its classification choices. We extracted and reviewed the top 10 most important features.
 
-#### Analysis of Test Case B:
-A traditional, basic keyword filter would fail on Test Case B because it uses polite corporate language ("Dear employee", "project expense"). Our model managed to catch it, but the confidence score dropped to 55.00%. This lower score makes total sense architecturally: it reflects the "semantic battle" inside the text between the polite, normal phrasing and the malicious request to verify a password immediately. This proves why basic rules are not enough and why an AI layer is actually needed.
+We observed that terms like "2008", "wrote", and "aug" carry significant statistical weight. This happens because our training dataset contains historical email archives that include these metadata fragments. However, looking past this dataset noise, the model strongly relies on words that indicate urgency, financial operations, and immediate credential verification—such as "urgent", "invoice", and "password". For future iterations, we plan to implement a cleaner text preprocessing step to strip out dates and metadata tokens so the model can focus purely on security-relevant vocabulary.
 
-When an email is flagged as phishing, the system maps it to the MITRE ATT&CK framework:
-* **Tactic:** Initial Access (TA0001) / Credential Access (TA0006)
-* **Technique:** Phishing: Spearphishing Link (T1566.002)
+---
 
-We also generated real-time dashboards to track the system's live telemetry. The graphs show that safe emails usually cluster around very stable confidence scores, and they visualize the distribution of detected MITRE techniques, where "Phishing for Information" (T1598.003) was the most common threat. Finally, all classifications were logged into the `traffic_logs.log` file, showing that the system is ready to connect to a company's SOC system.
+## 5. Live Simulation and MITRE ATT&CK Mapping
+To see how our MVP performs in an operational context, we set up a testing macro that injected 100 random email samples through the pipeline. In this live run, the system classified 63.0% of the simulation traffic as safe and flagged 37.0% as phishing anomalies.
 
-### 6. Conclusion
-Our AI Cyber Shield MVP successfully achieves a 99% accuracy rate and a strong AUC of 1.00. By combining ML text classification with the MITRE ATT&CK framework and live logging, we built a tool that doesn't just block emails, but actually gives security analysts useful intelligence about the attacks. For future work, we want to test how the model handles more advanced, LLM-generated phishing emails.
+We paid close attention to how the system handled our two core project test cases:
+
+* **Test Case A (Routine Workspace Email):**
+  * *Text Content:* "Meeting reminders: Please review the Q3 corporate reports before tomorrow's sync..."
+  * *System Output:* Classified as **SAFE** with a high confidence level of **95.00%**. This confirms that the model will not cause operational friction or block routine business tasks.
+* **Test Case B (Deceptive Phishing Simulation):**
+  * *Text Content:* "Dear employee... please find attached the urgent project expense invoice... click the link to verify your password immediately..."
+  * *System Output:* Intercepted and raised a **PHISHING ALERT** with a confidence score of **55.00%**.
+
+### Operational Analysis of Test Case B:
+A traditional, signature-based keyword filter would easily miss Test Case B because the text uses polite, professional language ("Dear employee", "project expense"). Our model caught the threat, but its confidence dropped to 55.00%. Architecturally, this lower score makes complete sense: it reflects the actual semantic battle happening within the text between the legitimate-looking phrasing (the camouflage) and the high-risk request to verify a password immediately. This specific case shows why static rules fall short and why a machine learning layer is necessary to catch sophisticated social engineering.
+
+When a phishing threat is identified, the system automatically assigns the corresponding MITRE ATT&CK taxonomy:
+* **Tactic Mapping:** Initial Access (TA0001) / Credential Access (TA0006)
+* **Technique Mapping:** Phishing: Spearphishing Link (T1566.002)
+
+Our live monitoring dashboard also compiled real-time telemetry from the simulation. The dashboards visualize the confidence distribution (showing that legitimate traffic is highly clustered around high-certainty bounds) and track the frequency of detected tactics, where "Phishing for Information" (T1598.003) was the most prominent threat type. Finally, every single classification was saved to the `traffic_logs.log` file, showing that the system is ready for standard SIEM log ingestion.
+
+---
+
+## 6. Conclusion
+Our AI Cyber Shield MVP successfully achieved a 99% classification accuracy rate and an AUC of 1.00. By combining statistical text processing with a live audit trail and the MITRE ATT&CK framework, we built an MVP that goes beyond basic binary blocking to give security analysts actionable threat intelligence. For our next steps, we want to expand our testing dataset to evaluate how well this model holds up against more advanced phishing emails generated by large language models (LLMs).
