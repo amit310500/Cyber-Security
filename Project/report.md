@@ -1,42 +1,47 @@
-# AI Cyber Shield: Phishing Email Detection System MVP
+# AI-Powered Phishing Email Detection System (AI Cyber Shield)
 
-An intelligent Machine Learning Minimum Viable Product (MVP) designed to detect sophisticated phishing attacks by leveraging token-level statistical classification, continuous traffic simulation, and automated threat context enrichment mapped directly to the **MITRE ATT&CK Framework**.
-
----
-
-## 👥 Authors
-* **Amit Mitzmacher** - *Holon Institute of Technology (HIT)*
-* **Tal Mitzmacher** - *Holon Institute of Technology (HIT)*
-* **Course:** Artificial Intelligence in Cybersecurity
+**Course:** Artificial Intelligence in Cybersecurity  
+**Institution:** Holon Institute of Technology (HIT)  
+**Submitted by:** Amit Mitzmacher & Tal Mitzmacher  
 
 ---
 
-## 📌 1. Introduction and Objectives
-In this project, we developed an MVP system to detect phishing attacks using Machine Learning. Traditional tools rely on signature-based filters (like known bad URLs), which easily fail against "semantic camouflage"—malicious intent hidden inside polite, professional corporate language.
+## 📌 Project Overview
+This repository contains an **MVP (Minimum Viable Product) Phishing Detection System** developed to counter sophisticated social engineering attacks. Traditional security controls rely heavily on static signature-based filters (e.g., known malicious URLs or specific blacklisted domains), which frequently fail against **"semantic camouflage"**—where malicious intent is cloaked in polite, professional, and corporate language.
 
-Our main objective was to train a Random Forest model combined with TF-IDF vectorization to analyze text traffic in real-time. Additionally, the system automatically maps flagged threats to the MITRE ATT&CK framework to provide security teams with immediate context.
+To solve this, our system employs a machine learning pipeline pairing **TF-IDF (Term Frequency-Inverse Document Frequency) Vectorization** with a **Random Forest Classifier** to analyze email payloads in real-time. Crucially, the system acts as an intelligent layer for a Security Operations Center (SOC) by automatically mapping flagged anomalies directly to the **MITRE ATT&CK® Framework**.
+
+### Key Features
+* **Real-time Payload Classification:** High-throughput prediction engineered using multi-core parallel computing.
+* **Semantic Camouflage Detection:** Detects malicious intent even when stripped of obvious malicious triggers or bad indicators.
+* **MITRE ATT&CK Mapping:** Instantly translates alerts into actionable adversarial tactics and techniques for triage.
+* **Production-Ready Logging:** Outputs structured events to `traffic_logs.log` for direct SIEM/SOC ingestion.
 
 ---
 
-## 📊 2. Dataset and Data Distribution
-We utilized a dataset containing 82,486 email samples. The raw distribution consists of:
+## 📊 Dataset & Architecture
+
+The model was built and verified using a vast dataset comprising **82,486 email samples**, featuring a balanced distribution of benign corporate correspondence and active threats.
+
 * **Safe Corporate Emails (Class 0):** 39,634 samples (~48.0%)
 * **Phishing Threats (Class 1):** 42,852 samples (~52.0%)
 
-We split the data using an 80/20 ratio:
+### Data Split Strategy
+To guarantee strict independent evaluation, the dataset was split into an **80/20 ratio**:
 * **Training Set:** 65,988 samples
-* **Testing Set:** 16,498 samples (held out entirely for final verification)
-
-<p align="center">
-  <img src="image_b1eb63.png" alt="Dataset Distribution" width="60%">
-</p>
+* **Testing Set:** 16,498 samples *(held out entirely for final verification)*[cite: 1]
 
 ---
 
-## ⚡ 3. Performance Evaluation
-The model was trained using parallel computing (`n_jobs=-1`). Evaluating the model against the 16,498 independent test samples yielded an overall macro accuracy of 99%.
+## 📈 Performance & Evaluation Metrics
 
-### A. Classification Metrics
-```text
-Class 0 (Safe Traffic):     Precision: 0.99 | Recall: 0.99 | F1-Score: 0.99 | Support: 7,935
-Class 1 (Phishing Threats): Precision: 0.99 | Recall: 0.99 | F1-Score: 0.99 | Support: 8,563
+The system achieved a **99% Macro Accuracy** and an **Area Under the Curve (AUC) of 1.00** during evaluation against the unseen test partition[cite: 1]. 
+
+### Classification Report[cite: 1]
+
+| Class | Traffic Type | Precision | Recall | F1-Score | Support |
+| :---: | :--- | :---: | :---: | :---: | :---: |
+| **0** | Safe Corporate Traffic | 0.99 | 0.99 | 0.99 | 7,935 |
+| **1** | Phishing Threat | 0.99 | 0.99 | 0.99 | 8,563 |
+
+### Confusion Matrix Insights
