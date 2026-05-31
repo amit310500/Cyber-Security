@@ -1,8 +1,7 @@
 # Lab Report: Lab 3.1 — Event-Driven Cybersecurity Pipeline
 
 **Course:** HIT Accelerated AI Lab 5  
-**Students:** [שם 1] & [שם 2]  
-**Date:** May 31, 2026
+**Students:** Amit Mitzmacher, Tal Mitzmacher
 
 ---
 
