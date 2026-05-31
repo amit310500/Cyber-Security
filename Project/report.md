@@ -1,4 +1,4 @@
-# AI-Powered Phishing Email Detection System (AI Cyber Shield)
+# AI-Powered Phishing Email Detection System 
 
 **Course:** Artificial Intelligence in Cybersecurity  
 **Institution:** Holon Institute of Technology (HIT)  
