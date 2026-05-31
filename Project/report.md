@@ -1,66 +1,42 @@
-# Project Report: Phishing Email Detection System
+# AI Cyber Shield: Phishing Email Detection System MVP
 
-**Course:** Artificial Intelligence in Cybersecurity  
-**Submitted by:** Amit Mitzmacher, Tal Mitzmacher  
-**Institution:** Holon Institute of Technology (HIT)  
+An intelligent Machine Learning Minimum Viable Product (MVP) designed to detect sophisticated phishing attacks by leveraging token-level statistical classification, continuous traffic simulation, and automated threat context enrichment mapped directly to the **MITRE ATT&CK Framework**.
 
 ---
 
-## 1. Introduction and Objectives
-In this project, we developed an MVP system to detect phishing attacks using Machine Learning. Traditional tools rely on signature-based filters (like known bad URLs), which easily fail against "semantic camouflage"—malicious intent hidden inside polite, professional corporate language. 
+## 👥 Authors
+* **Amit Mitzmacher** - *Holon Institute of Technology (HIT)*
+* **Tal Mitzmacher** - *Holon Institute of Technology (HIT)*
+* **Course:** Artificial Intelligence in Cybersecurity
+
+---
+
+## 📌 1. Introduction and Objectives
+In this project, we developed an MVP system to detect phishing attacks using Machine Learning. Traditional tools rely on signature-based filters (like known bad URLs), which easily fail against "semantic camouflage"—malicious intent hidden inside polite, professional corporate language.
 
 Our main objective was to train a Random Forest model combined with TF-IDF vectorization to analyze text traffic in real-time. Additionally, the system automatically maps flagged threats to the MITRE ATT&CK framework to provide security teams with immediate context.
 
 ---
 
-## 2. Dataset and Data Distribution
-We utilized a balanced dataset containing 82,486 email samples (50% safe corporate emails and 50% phishing threats). This even split is critical to prevent the model from developing a bias toward a majority class. We split the data using an 80/20 ratio:
+## 📊 2. Dataset and Data Distribution
+We utilized a dataset containing 82,486 email samples. The raw distribution consists of:
+* **Safe Corporate Emails (Class 0):** 39,634 samples (~48.0%)
+* **Phishing Threats (Class 1):** 42,852 samples (~52.0%)
+
+We split the data using an 80/20 ratio:
 * **Training Set:** 65,988 samples
 * **Testing Set:** 16,498 samples (held out entirely for final verification)
 
+<p align="center">
+  <img src="image_b1eb63.png" alt="Dataset Distribution" width="60%">
+</p>
+
 ---
 
-## 3. Performance Evaluation
+## ⚡ 3. Performance Evaluation
 The model was trained using parallel computing (`n_jobs=-1`). Evaluating the model against the 16,498 independent test samples yielded an overall macro accuracy of 99%.
 
 ### A. Classification Metrics
-* **Class 0 (Safe Traffic):** Precision: 0.99 | Recall: 0.99 | F1-Score: 0.99 | Support: 7,935
-* **Class 1 (Phishing Threats):** Precision: 0.99 | Recall: 0.99 | F1-Score: 0.99 | Support: 8,563
-
-### B. Confusion Matrix Analysis
-The raw matrix breakdown shows exactly where the model made minor errors:
-* **True Negatives (TN):** 7,827 safe emails correctly identified.
-* **True Positives (TP):** 8,452 phishing emails successfully blocked.
-* **False Positives (FP):** 108 safe emails wrongly flagged as phishing (False Alarms).
-* **False Negatives (FN):** 111 phishing threats that slipped through.
-
-### C. ROC Curve and AUC Value
-The plotted ROC curve shows an Area Under the Curve (AUC) of 1.00 (rounded), proving that our TF-IDF features and Random Forest decision boundaries successfully separate benign corporate communication from phishing attempts.
-
----
-
-## 4. Feature Importance Insights
-Inspecting the model's `feature_importances_` allowed us to analyze the top 10 most influential words. While dataset noise from historical archives gave high statistical weight to metadata terms (like "2008", "wrote", and "aug"), the model relies heavily on security-relevant triggers like "urgent", "invoice", and "password". In future versions, we plan to improve text preprocessing to strip out dates and metadata.
-
----
-
-## 5. Live Simulation and MITRE ATT&CK Mapping
-We simulated real-world traffic by injecting 100 random email samples. The live run resulted in a realistic distribution: 63.0% safe traffic and 37.0% phishing alerts.
-
-We evaluated our system against two key project test cases:
-* **Test Case A (Routine Workspace Email):** Classified as **SAFE** (Confidence: **95.00%**), meaning the system will not disrupt daily business operations.
-* **Test Case B (Polite Attack Simulation):** Caught and flagged as a **PHISHING ALERT** (Confidence: **55.00%**).
-
-### Analysis of Test Case B:
-A basic keyword filter would miss Test Case B because it uses standard corporate vocabulary ("Dear employee", "project expense"). Our model caught it, but the confidence score dropped to 55.00%. This lower score represents the semantic conflict within the text between the polite phrasing and the sudden request for credential verification. This highlights why a machine learning layer is necessary over static rules.
-
-Flagged threats are mapped directly to the MITRE ATT&CK taxonomy:
-* **Tactic:** Initial Access (TA0001) / Credential Access (TA0006)
-* **Technique:** Phishing: Spearphishing Link (T1566.002)
-
-The live monitoring dashboards show that safe traffic clusters around high-certainty bounds, and map the frequency of detected tactics (where T1598.003 was highly prominent). All metrics were logged to `traffic_logs.log` for SOC system integration.
-
----
-
-## 6. Conclusion
-Our AI Cyber Shield MVP achieved a 99% accuracy rate and an AUC of 1.00. By combining text classification with real-time logging and the MITRE ATT&CK framework, the system provides actionable threat intelligence for security analysts. Future work will focus on testing the model against advanced phishing emails generated by Large Language Models (LLMs).
+```text
+Class 0 (Safe Traffic):     Precision: 0.99 | Recall: 0.99 | F1-Score: 0.99 | Support: 7,935
+Class 1 (Phishing Threats): Precision: 0.99 | Recall: 0.99 | F1-Score: 0.99 | Support: 8,563
