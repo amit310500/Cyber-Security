@@ -2,7 +2,7 @@
 
 **Course:** Artificial Intelligence in Cybersecurity  
 **Institution:** Holon Institute of Technology (HIT)  
-**Submitted by:** Amit Mitzmacher & Tal Mitzmacher  
+**Submitted by:** Amit Mitzmacher, Tal Mitzmacher  
 
 ---
 
